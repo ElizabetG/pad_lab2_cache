@@ -1,0 +1,39 @@
+version: '3.8'
+services: 
+    cache:
+        build: ./master/
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        volumes: 
+            - ./master/:/usr/src/app/
+        ports: 
+            - 5008:5000
+        environment: 
+            GATEWAYHOST: 192.168.103.200
+            GATEWAYPORT: 8081
+            PORT: 5008
+    slave:
+        build: ./slave/
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        volumes: 
+            - ./slave/:/usr/src/app/
+        ports: 
+            - 5009:5000
+        environment: 
+            GATEWAYHOST: 192.168.103.200
+            GATEWAYPORT: 8081
+            PORT: 5009
+    slave2:
+        build: ./slave/
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        volumes: 
+            - ./slave/:/usr/src/app/
+        ports: 
+            - 5010:5000
+        environment: 
+            GATEWAYHOST: 192.168.103.200
+            GATEWAYPORT: 8081
+            PORT: 5010
+
